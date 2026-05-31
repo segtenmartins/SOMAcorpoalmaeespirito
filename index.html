@@ -7,22 +7,22 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
 <style>
 :root {
-  --cor-destaque: #1a0e00;
-  --cor-texto: #1c1108;
-  --cor-secundario: #3a2c14;
-  --fundo: #fdf8f0;
-  --fundo-card: rgba(180,140,60,0.07);
-  --fundo-card-hover: rgba(180,140,60,0.14);
-  --borda: rgba(120,80,20,0.22);
-  --borda-forte: rgba(120,80,20,0.55);
-  --dourado: #7a5010;
-  --dourado-claro: #a07020;
-  --creme: #f5edd8;
-  --nav-bg: rgba(253,248,240,0.96);
-  --sombra: 0 4px 24px rgba(100,60,0,0.10);
+  --cor-destaque: #e8e0d0;
+  --cor-texto: #e8e0d0;
+  --cor-secundario: #a0b8d8;
+  --fundo: #0a1628;
+  --fundo-card: rgba(255,255,255,0.05);
+  --fundo-card-hover: rgba(255,255,255,0.09);
+  --borda: rgba(100,160,255,0.18);
+  --borda-forte: rgba(100,160,255,0.40);
+  --dourado: #c9a84c;
+  --dourado-claro: #e8c97a;
+  --creme: #06101e;
+  --nav-bg: rgba(10,22,40,0.97);
+  --sombra: 0 4px 24px rgba(0,0,0,0.35);
 }
 
-html { scroll-behavior: smooth; font-size: clamp(1.1rem, 1.6vw, 1.35rem); }
+html { scroll-behavior: smooth; font-size: clamp(1.1rem, 1.6vw, 1.35rem); background: #0a1628; }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body {
   max-width: 1100px;
@@ -55,7 +55,7 @@ body {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--borda);
-  box-shadow: 0 2px 12px rgba(100,60,0,0.07);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.3);
   display: flex;
   align-items: center;
   gap: 0.3rem;
@@ -68,7 +68,7 @@ body {
   font-family: 'Cinzel', serif;
   font-size: 0.78rem;
   font-weight: 600;
-  color: #3a2c14;
+  color: #a0b8d8;
   background: none;
   border: 1px solid transparent;
   border-radius: 6px;
@@ -79,9 +79,9 @@ body {
   letter-spacing: 0.03em;
 }
 .nav-btn:hover { color: var(--dourado); border-color: var(--borda); }
-.nav-btn.ativo { color: var(--cor-destaque); border-color: var(--dourado); background: rgba(122,80,16,0.08); }
+.nav-btn.ativo { color: var(--dourado); border-color: var(--dourado); background: rgba(201,168,76,0.1); }
 .nav-btn.nav-indice {
-  color: #fff;
+  color: #0a1628;
   background: var(--dourado);
   border-color: var(--dourado);
 }
@@ -96,7 +96,7 @@ body {
   justify-content: center;
   text-align: center;
   padding: 4rem 2rem 3rem;
-  background: linear-gradient(160deg, #fdf8f0 0%, #f5edd8 50%, #ede0c4 100%);
+  background: linear-gradient(160deg, #0a1628 0%, #0d2040 50%, #0f2855 100%);
   position: relative;
   overflow: hidden;
 }
@@ -105,7 +105,7 @@ body {
   position: absolute;
   top: -20%; left: -10%;
   width: 60%; height: 60%;
-  background: radial-gradient(ellipse, rgba(160,112,32,0.08) 0%, transparent 70%);
+  background: radial-gradient(ellipse, rgba(201,168,76,0.08) 0%, transparent 70%);
   pointer-events: none;
 }
 .hero::after {
@@ -113,7 +113,7 @@ body {
   position: absolute;
   bottom: -10%; right: -10%;
   width: 50%; height: 50%;
-  background: radial-gradient(ellipse, rgba(160,112,32,0.06) 0%, transparent 70%);
+  background: radial-gradient(ellipse, rgba(100,160,255,0.07) 0%, transparent 70%);
   pointer-events: none;
 }
 .hero-simbolo {
@@ -141,7 +141,7 @@ body {
   font-family: 'Cinzel Decorative', serif;
   font-size: clamp(2rem, 5.5vw, 3.8rem);
   font-weight: 700;
-  color: var(--cor-destaque);
+  color: #e8e0d0;
   line-height: 1.25;
   margin-bottom: 1rem;
   position: relative; z-index: 1;
@@ -150,7 +150,7 @@ body {
   font-family: 'EB Garamond', serif;
   font-style: italic;
   font-size: clamp(1.1rem, 2.2vw, 1.42rem);
-  color: var(--cor-secundario);
+  color: #a0b8d8;
   max-width: 640px;
   margin-bottom: 1.4rem;
   position: relative; z-index: 1;
@@ -197,7 +197,7 @@ body {
   cursor: pointer;
   font-family: 'Cinzel', serif;
   font-weight: 600;
-  color: var(--cor-destaque);
+  color: #c8d8e8;
   font-size: 0.9rem;
   transition: all 0.22s;
   text-align: left;
@@ -234,7 +234,7 @@ body {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--dourado);
-  border: 1px solid rgba(122,80,16,0.35);
+  border: 1px solid rgba(201,168,76,0.35);
   border-radius: 4px;
   padding: 0.22rem 0.8rem;
   margin-bottom: 1rem;
@@ -243,7 +243,7 @@ body {
   font-family: 'Cinzel Decorative', serif;
   font-size: clamp(1.5rem, 3.2vw, 2.2rem);
   font-weight: 700;
-  color: #1a0e00;
+  color: #e8e0d0;
   line-height: 1.28;
   margin-bottom: 0.5rem;
 }
@@ -254,12 +254,12 @@ body {
   margin-bottom: 2rem;
   width: 120px;
 }
-p { color: #1a0e00; font-weight: 500; font-size: 1.05em; margin-bottom: 1.1rem; }
+p { color: #c8d8e8; font-weight: 500; font-size: 1.05em; margin-bottom: 1.1rem; }
 
 /* CITAÇÃO */
 .citacao {
-  background: #ffe066;
-  border-left: 4px solid #c8920a;
+  background: rgba(201,168,76,0.10);
+  border-left: 4px solid var(--dourado);
   border-radius: 0 8px 8px 0;
   padding: 1.4rem 1.6rem 1.4rem 2.2rem;
   position: relative;
@@ -270,8 +270,8 @@ p { color: #1a0e00; font-weight: 500; font-size: 1.05em; margin-bottom: 1.1rem; 
   position: absolute;
   top: -0.2rem; left: 0.5rem;
   font-size: 3.5rem;
-  color: #7a5010;
-  opacity: 0.4;
+  color: var(--dourado);
+  opacity: 0.35;
   font-family: 'EB Garamond', serif;
   line-height: 1;
 }
@@ -280,7 +280,7 @@ p { color: #1a0e00; font-weight: 500; font-size: 1.05em; margin-bottom: 1.1rem; 
   font-style: italic;
   font-weight: 700;
   font-size: 1.32rem;
-  color: #1a0e00;
+  color: #e8e0d0;
   line-height: 1.72;
   margin-bottom: 0.5rem;
 }
@@ -288,15 +288,15 @@ p { color: #1a0e00; font-weight: 500; font-size: 1.05em; margin-bottom: 1.1rem; 
   font-family: 'Cinzel', serif;
   font-weight: 600;
   font-size: 0.85rem;
-  color: #6b3f00;
+  color: var(--dourado-claro);
   display: block;
 }
 
 /* DESTAQUE BÍBLICO */
 .destaque-biblico {
-  background: #ffe066;
-  border: 1px solid rgba(160,112,32,0.35);
-  border-left: 4px solid #c8920a;
+  background: rgba(201,168,76,0.10);
+  border: 1px solid rgba(201,168,76,0.25);
+  border-left: 4px solid var(--dourado);
   border-radius: 0 12px 12px 0;
   padding: 1.6rem 2rem;
   margin: 2rem auto;
@@ -308,7 +308,7 @@ p { color: #1a0e00; font-weight: 500; font-size: 1.05em; margin-bottom: 1.1rem; 
   font-style: italic;
   font-weight: 700;
   font-size: clamp(1.1rem, 2.2vw, 1.32rem);
-  color: #1a0e00;
+  color: #e8e0d0;
   line-height: 1.68;
   margin-bottom: 0.5rem;
 }
@@ -316,7 +316,7 @@ p { color: #1a0e00; font-weight: 500; font-size: 1.05em; margin-bottom: 1.1rem; 
   font-family: 'Cinzel', serif;
   font-weight: 600;
   font-size: 0.88rem;
-  color: #6b3f00;
+  color: var(--dourado-claro);
 }
 
 /* CARDS */
@@ -344,7 +344,7 @@ p { color: #1a0e00; font-weight: 500; font-size: 1.05em; margin-bottom: 1.1rem; 
   font-family: 'Cinzel', serif;
   font-weight: 600;
   font-size: 1rem;
-  color: #1a0e00;
+  color: #e8e0d0;
   margin-bottom: 0.5rem;
 }
 .card p { font-size: 1.02em; margin-bottom: 0; }
@@ -365,12 +365,12 @@ p { color: #1a0e00; font-weight: 500; font-size: 1.05em; margin-bottom: 1.1rem; 
   font-family: 'Cinzel', serif;
   font-weight: 600;
   font-size: 0.92rem;
-  color: #1a0e00;
+  color: #c8d8e8;
   background: var(--fundo-card);
   transition: background 0.2s;
   gap: 1rem;
 }
-.ac-header:hover { background: var(--fundo-card-hover); }
+.ac-header:hover { background: var(--fundo-card-hover); color: #e8e0d0; }
 .ac-seta {
   color: var(--dourado);
   font-size: 1rem;
@@ -383,7 +383,7 @@ p { color: #1a0e00; font-weight: 500; font-size: 1.05em; margin-bottom: 1.1rem; 
   overflow: hidden;
   transition: max-height 0.4s ease;
   padding: 0 1.3rem;
-  color: #1a0e00;
+  color: #c8d8e8;
   font-weight: 500;
   font-size: 1.05em;
   line-height: 1.82;
@@ -417,7 +417,7 @@ p { color: #1a0e00; font-weight: 500; font-size: 1.05em; margin-bottom: 1.1rem; 
 .passo-titulo {
   font-family: 'Cinzel', serif;
   font-weight: 600;
-  color: #1a0e00;
+  color: #e8e0d0;
   font-size: 0.95rem;
   margin-bottom: 0.3rem;
 }
@@ -438,20 +438,20 @@ p { color: #1a0e00; font-weight: 500; font-size: 1.05em; margin-bottom: 1.1rem; 
   width: 0.65rem; height: 0.65rem;
   border-radius: 50%;
   background: var(--dourado);
-  box-shadow: 0 0 8px rgba(160,112,32,0.4);
+  box-shadow: 0 0 8px rgba(201,168,76,0.4);
   flex-shrink: 0;
   margin-top: 0.55rem;
 }
 .impl-titulo {
   font-family: 'Cinzel', serif;
   text-transform: uppercase;
-  color: #1a0e00;
+  color: #e8e0d0;
   font-weight: 600;
   font-size: 0.88rem;
   margin-bottom: 0.25rem;
   letter-spacing: 0.05em;
 }
-.impl-texto { font-size: 1.02em; color: #1a0e00; font-weight: 500; }
+.impl-texto { font-size: 1.02em; color: #c8d8e8; font-weight: 500; }
 
 /* VOCABULÁRIO */
 .vocab-grid {
@@ -484,7 +484,7 @@ p { color: #1a0e00; font-weight: 500; font-size: 1.05em; margin-bottom: 1.1rem; 
   color: var(--dourado-claro);
   margin-bottom: 0.5rem;
 }
-.vocab-def { font-size: 1.02em; color: #1a0e00; font-weight: 500; }
+.vocab-def { font-size: 1.02em; color: #c8d8e8; font-weight: 500; }
 
 /* TABELA */
 .tabela-wrap {
@@ -494,7 +494,7 @@ p { color: #1a0e00; font-weight: 500; font-size: 1.05em; margin-bottom: 1.1rem; 
   margin-top: 1.5rem;
 }
 table { width: 100%; border-collapse: collapse; }
-thead { background: rgba(122,80,16,0.12); }
+thead { background: rgba(201,168,76,0.10); }
 th {
   font-family: 'Cinzel', serif;
   text-transform: uppercase;
@@ -506,7 +506,7 @@ th {
   text-align: left;
 }
 td {
-  color: #1a0e00;
+  color: #c8d8e8;
   font-weight: 500;
   font-size: 1em;
   padding: 0.8rem 1.1rem;
@@ -520,7 +520,7 @@ tr:hover td { background: var(--fundo-card); }
   font-family: 'Cinzel', serif;
   font-size: 0.82rem;
   font-weight: 600;
-  color: #1a0e00;
+  color: #c8d8e8;
   border: 1px solid var(--borda-forte);
   background: var(--fundo-card);
   border-radius: 6px;
@@ -530,12 +530,13 @@ tr:hover td { background: var(--fundo-card); }
   position: relative;
 }
 .tag-ref:hover { border-color: var(--dourado); color: var(--dourado); }
-.tag-ref.flash { background: rgba(122,80,16,0.18); border-color: var(--dourado); color: var(--dourado); }
+.tag-ref.flash { background: rgba(201,168,76,0.15); border-color: var(--dourado); color: var(--dourado); }
 .tooltip {
   display: none;
   position: fixed;
-  background: #1a0e00;
-  color: #ffe066;
+  background: #0d2040;
+  color: var(--dourado-claro);
+  border: 1px solid var(--borda);
   font-family: 'EB Garamond', serif;
   font-style: italic;
   font-size: 0.92rem;
@@ -580,7 +581,7 @@ footer {
   font-family: 'Cinzel Decorative', serif;
   font-size: 1.1rem;
   font-weight: 700;
-  color: var(--cor-destaque);
+  color: #e8e0d0;
   margin-bottom: 0.3rem;
 }
 .footer-local {
@@ -599,7 +600,7 @@ footer {
 .footer-nota {
   font-family: 'EB Garamond', serif;
   font-style: italic;
-  color: #3a2c14;
+  color: #a0b8d8;
   font-weight: 500;
   font-size: 1em;
   margin-top: 1.2rem;
@@ -614,7 +615,7 @@ footer {
   height: 2.8rem;
   border-radius: 50%;
   background: var(--dourado);
-  color: #fff;
+  color: #0a1628;
   border: none;
   font-size: 1.2rem;
   cursor: pointer;
