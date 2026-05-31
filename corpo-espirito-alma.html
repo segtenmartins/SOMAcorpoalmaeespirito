@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Corpo, Espírito e Alma — Pr. João Alves</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cor-destaque: #1a0e00;
+  --cor-texto: #1c1108;
+  --cor-secundario: #3a2c14;
+  --fundo: #fdf8f0;
+  --fundo-card: rgba(180,140,60,0.07);
+  --fundo-card-hover: rgba(180,140,60,0.14);
+  --borda: rgba(120,80,20,0.22);
+  --borda-forte: rgba(120,80,20,0.55);
+  --dourado: #7a5010;
+  --dourado-claro: #a07020;
+  --creme: #f5edd8;
+  --nav-bg: rgba(253,248,240,0.96);
+  --sombra: 0 4px 24px rgba(100,60,0,0.10);
+}
+
+html { scroll-behavior: smooth; font-size: clamp(1.1rem, 1.6vw, 1.35rem); }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+  background: var(--fundo);
+  color: var(--cor-texto);
+  font-family: 'EB Garamond', serif;
+  font-weight: 500;
+  line-height: 1.82;
+}
+
+/* BARRA DE PROGRESSO */
+#progressBar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--dourado), var(--dourado-claro));
+  z-index: 9999;
+  transition: width 0.1s linear;
+}
+
+/* NAV FIXA */
+#mainNav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--nav-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--borda);
+  box-shadow: 0 2px 12px rgba(100,60,0,0.07);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.55rem 1rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+#mainNav::-webkit-scrollbar { display: none; }
+.nav-btn {
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #3a2c14;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 0.32rem 0.8rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+  letter-spacing: 0.03em;
+}
+.nav-btn:hover { color: var(--dourado); border-color: var(--borda); }
+.nav-btn.ativo { color: var(--cor-destaque); border-color: var(--dourado); background: rgba(122,80,16,0.08); }
+.nav-btn.nav-indice {
+  color: #fff;
+  background: var(--dourado);
+  border-color: var(--dourado);
+}
+.nav-btn.nav-indice:hover { background: var(--dourado-claro); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 2rem 3rem;
+  background: linear-gradient(160deg, #fdf8f0 0%, #f5edd8 50%, #ede0c4 100%);
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -20%; left: -10%;
+  width: 60%; height: 60%;
+  background: radial-gradient(ellipse, rgba(160,112,32,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -10%; right: -10%;
+  width: 50%; height: 50%;
+  background: radial-gradient(ellipse, rgba(160,112,32,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-simbolo {
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  animation: flutuar 3.6s ease-in-out infinite;
+  margin-bottom: 1.2rem;
+  position: relative;
+  z-index: 1;
+}
+@keyframes flutuar {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+.hero-categoria {
+  font-family: 'Cinzel', serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--dourado);
+  margin-bottom: 1rem;
+  position: relative; z-index: 1;
+}
+.hero h1 {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(2rem, 5.5vw, 3.8rem);
+  font-weight: 700;
+  color: var(--cor-destaque);
+  line-height: 1.25;
+  margin-bottom: 1rem;
+  position: relative; z-index: 1;
+}
+.hero-subtitulo {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  font-size: clamp(1.1rem, 2.2vw, 1.42rem);
+  color: var(--cor-secundario);
+  max-width: 640px;
+  margin-bottom: 1.4rem;
+  position: relative; z-index: 1;
+}
+.hero-autor {
+  font-family: 'Cinzel', serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--dourado);
+  letter-spacing: 0.08em;
+  position: relative; z-index: 1;
+}
+.hero-seta {
+  margin-top: 2.5rem;
+  position: relative; z-index: 1;
+  animation: seta-pulsa 2s ease-in-out infinite;
+  cursor: pointer;
+  font-size: 1.6rem;
+  color: var(--dourado);
+}
+@keyframes seta-pulsa {
+  0%, 100% { opacity: 0.5; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.18); }
+}
+
+/* SEÇÃO ÍNDICE */
+#indice {
+  padding: 3rem 2rem;
+}
+.indice-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.7rem;
+  margin-top: 1.8rem;
+}
+.indice-btn {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--fundo-card);
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  padding: 0.8rem 1.2rem;
+  cursor: pointer;
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  color: var(--cor-destaque);
+  font-size: 0.9rem;
+  transition: all 0.22s;
+  text-align: left;
+  width: 100%;
+}
+.indice-btn:hover {
+  border-color: var(--dourado);
+  color: var(--dourado);
+  transform: translateX(4px);
+  background: var(--fundo-card-hover);
+}
+.indice-num {
+  font-family: 'Cinzel Decorative', serif;
+  color: var(--dourado);
+  font-size: 1rem;
+  min-width: 2rem;
+  text-align: center;
+}
+
+/* SEÇÕES */
+.section {
+  padding: 3.5rem 2rem;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.section.visivel { opacity: 1; transform: translateY(0); }
+
+.badge {
+  display: inline-block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--dourado);
+  border: 1px solid rgba(122,80,16,0.35);
+  border-radius: 4px;
+  padding: 0.22rem 0.8rem;
+  margin-bottom: 1rem;
+}
+.section-titulo {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(1.5rem, 3.2vw, 2.2rem);
+  font-weight: 700;
+  color: #1a0e00;
+  line-height: 1.28;
+  margin-bottom: 0.5rem;
+}
+.section-linha {
+  height: 2px;
+  background: linear-gradient(90deg, var(--dourado), transparent);
+  border-radius: 2px;
+  margin-bottom: 2rem;
+  width: 120px;
+}
+p { color: #1a0e00; font-weight: 500; font-size: 1.05em; margin-bottom: 1.1rem; }
+
+/* CITAÇÃO */
+.citacao {
+  background: #ffe066;
+  border-left: 4px solid #c8920a;
+  border-radius: 0 8px 8px 0;
+  padding: 1.4rem 1.6rem 1.4rem 2.2rem;
+  position: relative;
+  margin: 1.5rem 0;
+}
+.citacao::before {
+  content: '\201C';
+  position: absolute;
+  top: -0.2rem; left: 0.5rem;
+  font-size: 3.5rem;
+  color: #7a5010;
+  opacity: 0.4;
+  font-family: 'EB Garamond', serif;
+  line-height: 1;
+}
+.citacao p {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.32rem;
+  color: #1a0e00;
+  line-height: 1.72;
+  margin-bottom: 0.5rem;
+}
+.citacao-ref {
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #6b3f00;
+  display: block;
+}
+
+/* DESTAQUE BÍBLICO */
+.destaque-biblico {
+  background: #ffe066;
+  border: 1px solid rgba(160,112,32,0.35);
+  border-left: 4px solid #c8920a;
+  border-radius: 0 12px 12px 0;
+  padding: 1.6rem 2rem;
+  margin: 2rem auto;
+  max-width: 100%;
+  text-align: center;
+}
+.destaque-biblico p {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(1.1rem, 2.2vw, 1.32rem);
+  color: #1a0e00;
+  line-height: 1.68;
+  margin-bottom: 0.5rem;
+}
+.destaque-biblico .ref {
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: #6b3f00;
+}
+
+/* CARDS */
+.cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.1rem;
+  margin-top: 1.5rem;
+}
+.card {
+  background: var(--fundo-card);
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  padding: 1.4rem 1.6rem;
+  transition: all 0.25s;
+}
+.card:hover {
+  border-color: var(--dourado);
+  transform: translateY(-3px);
+  box-shadow: var(--sombra);
+  background: var(--fundo-card-hover);
+}
+.card-icone { font-size: 1.8rem; margin-bottom: 0.5rem; }
+.card-titulo {
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #1a0e00;
+  margin-bottom: 0.5rem;
+}
+.card p { font-size: 1.02em; margin-bottom: 0; }
+
+/* ACORDEÃO */
+.acordeao { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.6rem; }
+.ac-item {
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.ac-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.3rem;
+  cursor: pointer;
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: #1a0e00;
+  background: var(--fundo-card);
+  transition: background 0.2s;
+  gap: 1rem;
+}
+.ac-header:hover { background: var(--fundo-card-hover); }
+.ac-seta {
+  color: var(--dourado);
+  font-size: 1rem;
+  transition: transform 0.3s;
+  flex-shrink: 0;
+}
+.ac-item.aberto .ac-seta { transform: rotate(180deg); }
+.ac-corpo {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  padding: 0 1.3rem;
+  color: #1a0e00;
+  font-weight: 500;
+  font-size: 1.05em;
+  line-height: 1.82;
+}
+.ac-item.aberto .ac-corpo { max-height: 600px; padding: 1rem 1.3rem; }
+
+/* PASSOS NUMERADOS */
+.passos { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1.2rem; }
+.passo {
+  display: flex;
+  gap: 1.2rem;
+  align-items: flex-start;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.passo.visivel { opacity: 1; transform: translateX(0); }
+.passo-num {
+  min-width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  border: 2px solid var(--dourado);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  color: var(--dourado);
+  font-size: 0.92rem;
+  flex-shrink: 0;
+}
+.passo-conteudo {}
+.passo-titulo {
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  color: #1a0e00;
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+}
+.passo p { font-size: 1.02em; margin-bottom: 0; }
+
+/* LISTA DE IMPLICAÇÕES */
+.implicacoes { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.9rem; }
+.impl-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  border-left: 2px solid var(--dourado);
+  background: var(--fundo-card);
+  border-radius: 0 8px 8px 0;
+  padding: 0.9rem 1.2rem;
+}
+.impl-ponto {
+  width: 0.65rem; height: 0.65rem;
+  border-radius: 50%;
+  background: var(--dourado);
+  box-shadow: 0 0 8px rgba(160,112,32,0.4);
+  flex-shrink: 0;
+  margin-top: 0.55rem;
+}
+.impl-titulo {
+  font-family: 'Cinzel', serif;
+  text-transform: uppercase;
+  color: #1a0e00;
+  font-weight: 600;
+  font-size: 0.88rem;
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.05em;
+}
+.impl-texto { font-size: 1.02em; color: #1a0e00; font-weight: 500; }
+
+/* VOCABULÁRIO */
+.vocab-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.9rem;
+  margin-top: 1.5rem;
+}
+.vocab-card {
+  background: var(--fundo-card);
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  padding: 1.2rem 1.5rem;
+  transition: all 0.25s;
+}
+.vocab-card:hover {
+  border-color: var(--dourado);
+  transform: translateY(-2px);
+  background: var(--fundo-card-hover);
+}
+.vocab-palavra {
+  font-family: 'Cinzel Decorative', serif;
+  color: var(--dourado);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.vocab-transliteracao {
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  color: var(--dourado-claro);
+  margin-bottom: 0.5rem;
+}
+.vocab-def { font-size: 1.02em; color: #1a0e00; font-weight: 500; }
+
+/* TABELA */
+.tabela-wrap {
+  overflow-x: auto;
+  border-radius: 10px;
+  border: 1px solid var(--borda);
+  margin-top: 1.5rem;
+}
+table { width: 100%; border-collapse: collapse; }
+thead { background: rgba(122,80,16,0.12); }
+th {
+  font-family: 'Cinzel', serif;
+  text-transform: uppercase;
+  color: var(--dourado);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.9rem 1.1rem;
+  text-align: left;
+}
+td {
+  color: #1a0e00;
+  font-weight: 500;
+  font-size: 1em;
+  padding: 0.8rem 1.1rem;
+  border-top: 1px solid var(--borda);
+}
+tr:hover td { background: var(--fundo-card); }
+
+/* TAGS DE REFERÊNCIA */
+.tags-ref { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+.tag-ref {
+  font-family: 'Cinzel', serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #1a0e00;
+  border: 1px solid var(--borda-forte);
+  background: var(--fundo-card);
+  border-radius: 6px;
+  padding: 0.28rem 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+.tag-ref:hover { border-color: var(--dourado); color: var(--dourado); }
+.tag-ref.flash { background: rgba(122,80,16,0.18); border-color: var(--dourado); color: var(--dourado); }
+.tooltip {
+  display: none;
+  position: fixed;
+  background: #1a0e00;
+  color: #ffe066;
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  font-size: 0.92rem;
+  font-weight: 500;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  max-width: 280px;
+  z-index: 500;
+  pointer-events: none;
+  line-height: 1.5;
+}
+
+/* DIVISOR */
+.divisor {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 0.5rem 2rem;
+  margin: 0.5rem 0;
+}
+.divisor::before, .divisor::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--borda);
+}
+.divisor-glifo {
+  color: var(--dourado);
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+/* RODAPÉ */
+footer {
+  background: var(--creme);
+  border-top: 1px solid var(--borda);
+  text-align: center;
+  padding: 3rem 2rem;
+}
+.footer-simbolo { font-size: 2.2rem; margin-bottom: 0.8rem; }
+.footer-nome {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--cor-destaque);
+  margin-bottom: 0.3rem;
+}
+.footer-local {
+  font-family: 'Cinzel', serif;
+  font-size: 0.82rem;
+  color: var(--dourado);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.3rem;
+}
+.footer-site {
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  color: var(--dourado-claro);
+  text-decoration: none;
+}
+.footer-nota {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  color: #3a2c14;
+  font-weight: 500;
+  font-size: 1em;
+  margin-top: 1.2rem;
+}
+
+/* BOTÃO VOLTAR AO TOPO */
+#backTop {
+  position: fixed;
+  bottom: 2rem;
+  right: 1.5rem;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  background: var(--dourado);
+  color: #fff;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s, transform 0.3s, scale 0.2s;
+  z-index: 200;
+  pointer-events: none;
+}
+#backTop.visivel { opacity: 1; transform: translateY(0); pointer-events: all; }
+#backTop:hover { scale: 1.1; }
+
+/* RESPONSIVO */
+@media (max-width: 600px) {
+  .hero { padding: 3rem 1.2rem 2.5rem; }
+  .section { padding: 2.5rem 1.2rem; }
+  #indice { padding: 2rem 1.2rem; }
+}
+</style>
+</head>
+<body>
+
+<div id="progressBar"></div>
+
+<nav id="mainNav">
+  <button class="nav-btn nav-indice" onclick="irPara('indice')">⊞ Índice</button>
+  <button class="nav-btn" data-nav="1" onclick="irPara('vocabulario')">Vocabulário</button>
+  <button class="nav-btn" data-nav="2" onclick="irPara('natureza-alma')">A Alma</button>
+  <button class="nav-btn" data-nav="3" onclick="irPara('tripartite')">Visão Tripartite</button>
+  <button class="nav-btn" data-nav="4" onclick="irPara('soma-biblia')">O Soma</button>
+  <button class="nav-btn" data-nav="5" onclick="irPara('separacao-funcional')">Separação Funcional</button>
+  <button class="nav-btn" data-nav="6" onclick="irPara('trindade-soma')">Trindade</button>
+  <button class="nav-btn" data-nav="7" onclick="irPara('morte')">Morte e Além</button>
+  <button class="nav-btn" data-nav="8" onclick="irPara('ressurreicao')">Ressurreição</button>
+  <button class="nav-btn" data-nav="9" onclick="irPara('passagens')">Passagens</button>
+  <button class="nav-btn" data-nav="10" onclick="irPara('estudo')">Guia de Estudo</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-simbolo">✦</div>
+  <div class="hero-categoria">Teologia Bíblica · Antropologia · Escatologia</div>
+  <h1>Corpo, Espírito e Alma</h1>
+  <p class="hero-subtitulo">Uma investigação bíblica sobre a natureza tripartite do ser humano, o estado intermediário e a reunificação na ressurreição</p>
+  <div class="hero-autor">Pr. João Alves</div>
+  <div class="hero-seta" onclick="irPara('indice')">↓</div>
+</section>
+
+<!-- ÍNDICE -->
+<section id="indice" class="section">
+  <div class="badge">Sumário</div>
+  <h2 class="section-titulo">Índice de Conteúdo</h2>
+  <div class="section-linha"></div>
+  <div class="indice-grid">
+    <button class="indice-btn" onclick="irPara('vocabulario')">
+      <span class="indice-num">I</span>
+      Vocabulário Bíblico — Nephesh, Ruach e Psyché
+    </button>
+    <button class="indice-btn" onclick="irPara('natureza-alma')">
+      <span class="indice-num">II</span>
+      A Natureza da Alma — Usos e Dimensões Bíblicas
+    </button>
+    <button class="indice-btn" onclick="irPara('tripartite')">
+      <span class="indice-num">III</span>
+      A Visão Tripartite — Corpo, Alma e Espírito
+    </button>
+    <button class="indice-btn" onclick="irPara('soma-biblia')">
+      <span class="indice-num">IV</span>
+      O Soma na Bíblia — Corpo Humano, Igreja e Ressurreição
+    </button>
+    <button class="indice-btn" onclick="irPara('separacao-funcional')">
+      <span class="indice-num">V</span>
+      Separação Funcional, Não Espacial
+    </button>
+    <button class="indice-btn" onclick="irPara('trindade-soma')">
+      <span class="indice-num">VI</span>
+      Trindade e a Analogia do Soma
+    </button>
+    <button class="indice-btn" onclick="irPara('morte')">
+      <span class="indice-num">VII</span>
+      A Morte e o Estado Intermediário
+    </button>
+    <button class="indice-btn" onclick="irPara('ressurreicao')">
+      <span class="indice-num">VIII</span>
+      A Ressurreição e o Soma Glorificado
+    </button>
+    <button class="indice-btn" onclick="irPara('passagens')">
+      <span class="indice-num">IX</span>
+      Passagens-Chave por Tema
+    </button>
+    <button class="indice-btn" onclick="irPara('estudo')">
+      <span class="indice-num">X</span>
+      Guia de Estudo em Sessões
+    </button>
+  </div>
+</section>
+
+<div class="divisor"><span class="divisor-glifo">✦</span></div>
+
+<!-- I — VOCABULÁRIO -->
+<section class="section" id="vocabulario" data-nav="1">
+  <div class="badge">I — Vocabulário</div>
+  <h2 class="section-titulo">As Palavras Bíblicas</h2>
+  <div class="section-linha"></div>
+  <p>O estudo do ser humano começa pelas próprias palavras que as Escrituras usam. Cada termo hebraico e grego carrega uma riqueza de significado que orienta como compreendemos nossa natureza.</p>
+
+  <div class="vocab-grid">
+    <div class="vocab-card">
+      <div class="vocab-palavra">נֶפֶשׁ</div>
+      <div class="vocab-transliteracao">Nephesh — Hebraico</div>
+      <div class="vocab-def">Aparece 754 vezes no Antigo Testamento. Palavra de múltiplos usos: ora designa a <em>pessoa inteira</em> (Ez 18:4), ora é associada ao sangue como princípio vital (Lv 17:14), ora é a parte incorpórea e invisível do ser humano que sobrevive à morte do corpo (Gn 35:18; 1 Rs 17:21). Esse leque de sentidos reflete a riqueza da anthropologia hebraica — a alma é o ser humano em sua totalidade, mas também o núcleo imaterial que o transcende. Traduzido como "alma", "vida", "pessoa" ou "ser vivente".</div>
+    </div>
+    <div class="vocab-card">
+      <div class="vocab-palavra">רוּחַ</div>
+      <div class="vocab-transliteracao">Ruach — Hebraico</div>
+      <div class="vocab-def">Traduzido como "espírito", "vento" ou "sopro". Associado ao movimento, à inteligência e ao princípio vital que vem de Deus. Em Eclesiastes 12:7, o ruach é o que retorna a Deus na morte. É o elemento que conecta o ser humano com o divino.</div>
+    </div>
+    <div class="vocab-card">
+      <div class="vocab-palavra">ψυχή</div>
+      <div class="vocab-transliteracao">Psyché — Grego</div>
+      <div class="vocab-def">Aparece 105 vezes no Novo Testamento. Corresponde ao nephesh hebraico e é traduzida como "alma". No pensamento grego, adquire nuances de entidade imaterial distinta do corpo. Paulo e outros escritores do NT usam o termo em diferentes contextos funcionais.</div>
+    </div>
+    <div class="vocab-card">
+      <div class="vocab-palavra">πνεῦμα</div>
+      <div class="vocab-transliteracao">Pneuma — Grego</div>
+      <div class="vocab-def">Traduzido como "espírito". No NT, muitas vezes distinguido de psyché, como em Hebreus 4:12. Indica o princípio vital mais profundo, ligado à consciência espiritual e à comunhão com Deus. Paulo ora pela preservação do espírito, da alma e do corpo (1 Ts 5:23).</div>
+    </div>
+    <div class="vocab-card">
+      <div class="vocab-palavra">σῶμα</div>
+      <div class="vocab-transliteracao">Soma — Grego</div>
+      <div class="vocab-def">O corpo, mas não apenas no sentido físico. Em Paulo, o soma é a pessoa encarnada em sua totalidade. Na ressurreição, o soma será transformado — não extinto — em corpo espiritual (soma pneumatikon), reunindo corpo, alma e espírito de forma glorificada.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divisor"><span class="divisor-glifo">✦</span></div>
+
+<!-- II — NATUREZA DA ALMA -->
+<section class="section" id="natureza-alma" data-nav="2">
+  <div class="badge">II — A Alma</div>
+  <h2 class="section-titulo">A Natureza da Alma</h2>
+  <div class="section-linha"></div>
+
+  <p>Poucas pessoas compreendem de fato o que é a alma. As Escrituras apresentam a nephesh com usos variados e aparentemente contraditórios — e é precisamente nessa riqueza que reside a profundidade do conceito bíblico.</p>
+
+  <div class="destaque-biblico">
+    <p>Você é uma alma que tem um corpo — e não um corpo que tem uma alma.</p>
+    <span class="ref">Princípio bíblico fundamental</span>
+  </div>
+
+  <p>A alma é a parte incorpórea e invisível do ser humano, que sobrevive em consciência à morte do corpo. Passagens como Filipenses 1:23-24 e Apocalipse 6:9-10 deixam isso bem claro: a alma não é extinta com a morte — ela permanece consciente, reconhecível e capaz de clamar a Deus.</p>
+
+  <div class="acordeao">
+    <div class="ac-item">
+      <div class="ac-header" onclick="toggleAc(this)">
+        Alma como Sinônimo da Pessoa Inteira — Ezequiel 18:4
+        <span class="ac-seta">▾</span>
+      </div>
+      <div class="ac-corpo">
+        Em Ezequiel 18:4 — "todas as almas são minhas" — nephesh designa a própria pessoa em sua totalidade. A Bíblia frequentemente usa "alma" para referir-se ao ser humano completo, especialmente ao falar de responsabilidade moral diante de Deus. Dizer "a alma que pecar, essa morrerá" equivale a dizer "a pessoa que pecar". Esse uso mostra que a alma não é apenas uma parte do ser humano — ela o representa integralmente.
+      </div>
+    </div>
+    <div class="ac-item">
+      <div class="ac-header" onclick="toggleAc(this)">
+        Alma Associada ao Sangue — Levítico 17:14
+        <span class="ac-seta">▾</span>
+      </div>
+      <div class="ac-corpo">
+        Levítico 17:14 declara que "a vida (nephesh) de toda a carne é o seu sangue". Aqui a alma é associada ao sangue como portador do princípio vital. Esse uso, porém, é <em>metonímico</em> — o sangue carrega ou manifesta a vida, não é idêntico à alma. A prova disso está em Mateus 26:38, onde Jesus diz "a minha alma está profundamente triste": substituir "alma" por "sangue" tornaria o versículo sem sentido. O contexto sempre delimita o significado preciso de nephesh.
+      </div>
+    </div>
+    <div class="ac-item">
+      <div class="ac-header" onclick="toggleAc(this)">
+        A Alma que Parte e Retorna — Gênesis 35:18 e 1 Reis 17:21
+        <span class="ac-seta">▾</span>
+      </div>
+      <div class="ac-corpo">
+        Gênesis 35:18 narra que "a alma de Raquel saiu" no momento de sua morte — imagem poderosa de uma partida pessoal, não de uma extinção. Em 1 Reis 17:21, o profeta Elias pede a Deus que a alma do menino morto retorne ao seu corpo: "Senhor meu Deus, rogo-te que a alma deste menino torne para dentro dele." A oração foi atendida — o menino reviveu. Esses dois textos juntos revelam que a alma é identificável, pode partir do corpo e pode retornar a ele — ela é o núcleo pessoal que transcende a morte física.
+      </div>
+    </div>
+    <div class="ac-item">
+      <div class="ac-header" onclick="toggleAc(this)">
+        Almas Conscientes Clamando a Deus — Apocalipse 6:9-10
+        <span class="ac-seta">▾</span>
+      </div>
+      <div class="ac-corpo">
+        No quinto selo do Apocalipse, João vê "debaixo do altar as almas dos que foram mortos por causa da palavra de Deus." Essas almas estão plenamente conscientes: elas clamam em alta voz, têm memória de suas mortes, questionam a demora da justiça divina e recebem uma resposta. Isso confirma que entre a morte e a ressurreição, a alma existe em estado de consciência ativa — não em sono, não em extinção. Esse é o estado intermediário visto de dentro.
+      </div>
+    </div>
+  </div>
+
+  <div class="citacao">
+    <p>Vi debaixo do altar as almas dos que tinham sido mortos por causa da palavra de Deus e por causa do testemunho que sustentavam. E clamaram em alta voz, dizendo: Até quando, ó Soberano Senhor, santo e verdadeiro, não julgas e vingas o nosso sangue sobre os que habitam na terra?</p>
+    <span class="citacao-ref">Apocalipse 6:9-10</span>
+  </div>
+
+  <div class="implicacoes">
+    <div class="impl-item">
+      <div class="impl-ponto"></div>
+      <div>
+        <div class="impl-titulo">A alma é o seu verdadeiro "eu"</div>
+        <div class="impl-texto">Você não é um corpo que possui uma alma — você é uma alma que habita um corpo. A alma é o sujeito; o corpo é o instrumento temporário desta vida.</div>
+      </div>
+    </div>
+    <div class="impl-item">
+      <div class="impl-ponto"></div>
+      <div>
+        <div class="impl-titulo">A morte não extingue a alma</div>
+        <div class="impl-texto">A alma de Raquel partiu (Gn 35:18), mas não deixou de existir. A alma dos mártires em Ap 6:9-10 está ativa, consciente e clamando. A morte é separação, não extinção.</div>
+      </div>
+    </div>
+    <div class="impl-item">
+      <div class="impl-ponto"></div>
+      <div>
+        <div class="impl-titulo">O teste do absurdo valida a distinção</div>
+        <div class="impl-texto">Em Mateus 26:38, Jesus diz "minha alma está profundamente triste". Substituir "alma" por "sangue" torna o texto absurdo — prova de que nephesh ali designa claramente algo distinto do componente físico.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divisor"><span class="divisor-glifo">✦</span></div>
+
+<!-- III — TRIPARTITE (data-nav atualizado) -->
+<section class="section" id="tripartite" data-nav="3">
+  <div class="badge">III — Antropologia</div>
+  <h2 class="section-titulo">A Visão Tripartite do Ser Humano</h2>
+  <div class="section-linha"></div>
+
+  <p>A formulação bíblica mais completa da natureza humana apresenta três dimensões distintas, porém inseparáveis: corpo, alma e espírito. Juntos, formam o <em>soma</em> — a pessoa vivente e integrada neste mundo.</p>
+
+  <div class="destaque-biblico">
+    <p>Que o mesmo Deus de paz vos santifique inteiramente; e todo o vosso espírito, alma e corpo sejam conservados irrepreensíveis para a vinda de nosso Senhor Jesus Cristo.</p>
+    <span class="ref">1 Tessalonicenses 5:23</span>
+  </div>
+
+  <div class="cards-grid">
+    <div class="card">
+      <div class="card-icone">🌿</div>
+      <div class="card-titulo">Corpo (Soma / Basar)</div>
+      <p>A dimensão material do ser humano — nossa presença no mundo físico. Não é inferior ou "prisão da alma", mas parte integrante da identidade pessoal. Deus mesmo assumiu um corpo na encarnação, confirmando seu valor eterno. O corpo está destinado à ressurreição, não ao abandono.</p>
+    </div>
+    <div class="card">
+      <div class="card-icone">🌊</div>
+      <div class="card-titulo">Alma (Nephesh / Psyché)</div>
+      <p>O centro da personalidade, dos afetos e da vontade consciente. É o "eu" que sente, deseja, teme e ama. Permanece consciente após a morte física, como revelam as narrativas do estado intermediário. Maria expressa isso ao dizer: "minha alma engrandece ao Senhor" (Lc 1:46).</p>
+    </div>
+    <div class="card">
+      <div class="card-icone">🔥</div>
+      <div class="card-titulo">Espírito (Ruach / Pneuma)</div>
+      <p>O sopro vital recebido de Deus — o princípio mais profundo da vida. É o espírito que retorna a Deus no momento da morte (Ec 12:7). Hebreus 4:12 afirma que a Palavra de Deus é capaz de dividir alma e espírito, indicando sua distinção funcional.</p>
+    </div>
+  </div>
+
+  <div class="citacao">
+    <p>Porque a palavra de Deus é viva e eficaz, e mais penetrante do que qualquer espada de dois gumes, e penetra até ao ponto de dividir a alma e o espírito, as juntas e os tutanos, e é apta para discernir os pensamentos e intenções do coração.</p>
+    <span class="citacao-ref">Hebreus 4:12</span>
+  </div>
+
+  <p>Enquanto vivemos neste mundo, corpo, alma e espírito formam uma unidade integrada — o <em>soma</em>. A distinção entre eles não é espacial ou hierárquica, mas funcional: cada dimensão expressa um aspecto diferente do ser humano criado à imagem de Deus.</p>
+
+  <div style="margin-top:2rem;">
+    <div class="badge">Modelos Teológicos</div>
+    <p style="margin-top:1rem;">Ao longo da história cristã, três grandes modelos interpretaram a composição humana. Cada um tem respaldo em passagens bíblicas e implicações pastorais distintas:</p>
+    <div class="cards-grid" style="margin-top:1rem;">
+      <div class="card">
+        <div class="card-icone">⚖️</div>
+        <div class="card-titulo">Bipartite (Dualismo)</div>
+        <p>O ser humano é corpo + alma/espírito, sendo estes dois termos intercambiáveis na maioria dos contextos. A alma é o princípio vital e psicológico; o espírito indica a capacidade de relacionamento com Deus. Amplamente adotado na tradição reformada e na teologia patrística.</p>
+      </div>
+      <div class="card">
+        <div class="card-icone">🔺</div>
+        <div class="card-titulo">Tripartite</div>
+        <p>O ser humano é corpo + alma + espírito, com funções distintas: corpo (físico), alma (emoções, mente, vontade) e espírito (contato direto com Deus). Apoiado em 1 Tessalonicenses 5:23 e Hebreus 4:12. Favorece uma antropologia mais detalhada e uma espiritualidade interior rica.</p>
+      </div>
+      <div class="card">
+        <div class="card-icone">🌐</div>
+        <div class="card-titulo">Monismo / Holismo</div>
+        <p>O ser humano é uma unidade integral — corpo, alma e espírito são aspectos ou funções inseparáveis de um só ser, não partes dividíveis. Enfatizado por estudiosos contemporâneos, especialmente para a prática pastoral integrada: cuidados médicos, psicológicos e espirituais como uma só missão.</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:2rem;">
+    <div class="badge">Interação Prática</div>
+    <p style="margin-top:1rem;">Como corpo, alma e espírito funcionam juntos no cotidiano da fé:</p>
+    <div class="implicacoes" style="margin-top:1rem;">
+      <div class="impl-item">
+        <div class="impl-ponto"></div>
+        <div>
+          <div class="impl-titulo">Percepção e Decisão</div>
+          <div class="impl-texto">Sentidos corporais informam a mente e a alma; a vontade (alma) decide; o espírito orienta por convicção ou pela ação do Espírito Santo. Toda decisão moral envolve as três dimensões simultaneamente.</div>
+        </div>
+      </div>
+      <div class="impl-item">
+        <div class="impl-ponto"></div>
+        <div>
+          <div class="impl-titulo">Moralidade e Luta Interna</div>
+          <div class="impl-texto">A "carne" (sarx — dimensão corrupta do ser) luta contra o espírito regenerado. As escolhas morais ocorrem na alma/vontade, influenciada por ambos os lados. Gálatas 5 e Romanos 7–8 descrevem essa tensão com precisão clínica.</div>
+        </div>
+      </div>
+      <div class="impl-item">
+        <div class="impl-ponto"></div>
+        <div>
+          <div class="impl-titulo">Santificação Integral</div>
+          <div class="impl-texto">A obra de Deus visa transformar toda a pessoa: renovação da mente e alma (Rm 12:2), santificação do corpo (1 Co 6:19-20) e regeneração do espírito (2 Co 4–5). Nenhuma dimensão é ignorada.</div>
+        </div>
+      </div>
+      <div class="impl-item">
+        <div class="impl-ponto"></div>
+        <div>
+          <div class="impl-titulo">Relação com Deus</div>
+          <div class="impl-texto">O espírito comunica-se diretamente com Deus na oração e adoração; a alma integra as experiências afetivas e intelectuais da fé; o corpo expressa adoração concretamente e materializa a obediência.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divisor"><span class="divisor-glifo">✦</span></div>
+
+<!-- IV — O SOMA NA BÍBLIA -->
+<section class="section" id="soma-biblia" data-nav="4">
+  <div class="badge">IV — O Soma</div>
+  <h2 class="section-titulo">O Soma na Bíblia</h2>
+  <div class="section-linha"></div>
+
+  <p>O termo grego σῶμα (<em>sōma</em>) aparece dezenas de vezes no Novo Testamento e é teologicamente central — muito além do simples sentido de "corpo físico". Paulo em especial o usa em três grandes registros, cada um iluminando uma faceta diferente da redenção.</p>
+
+  <div class="cards-grid">
+    <div class="card">
+      <div class="card-icone">🏛️</div>
+      <div class="card-titulo">Corpo Humano — Templo do Espírito</div>
+      <p>Em 1 Coríntios 6:12–20, Paulo argumenta que o corpo não é moralmente neutro: ele pertence ao Senhor e é templo do Espírito Santo. Decisões sobre sexualidade, alimentação e saúde têm dimensão espiritual. O corpo não é descartável — é arena da santificação.</p>
+    </div>
+    <div class="card">
+      <div class="card-icone">⛪</div>
+      <div class="card-titulo">Corpo de Cristo — A Igreja</div>
+      <p>Em Romanos 12:4–5, 1 Coríntios 12:12–27 e Efésios 4:4–16, Paulo usa o soma como metáfora eclesiológica: a Igreja é um só corpo com Cristo como cabeça, e cada crente é um membro com função específica. A diversidade de dons serve à unidade do corpo.</p>
+    </div>
+    <div class="card">
+      <div class="card-icone">✨</div>
+      <div class="card-titulo">Corpo Ressuscitado — Soma Pneumatikon</div>
+      <p>Em 1 Coríntios 15, Paulo contrasta o "corpo natural" (soma psychikon) com o "corpo espiritual" (soma pneumatikon) da ressurreição. Não é abandono do corpo, mas sua transformação gloriosa — incorruptível, poderoso, espiritual. O modelo é o próprio Cristo ressurreto.</p>
+    </div>
+  </div>
+
+  <div class="destaque-biblico">
+    <p>Porque assim como o corpo é um e tem muitos membros, e todos os membros, sendo muitos, são um só corpo, assim também Cristo.</p>
+    <span class="ref">1 Coríntios 12:12</span>
+  </div>
+
+  <div class="acordeao" style="margin-top:1.5rem;">
+    <div class="ac-item">
+      <div class="ac-header" onclick="toggleAc(this)">
+        Mateus 10:28 — Corpo e Alma: Poderes Distintos
+        <span class="ac-seta">▾</span>
+      </div>
+      <div class="ac-corpo">
+        "E não temais os que matam o corpo e não podem matar a alma; temei antes aquele que pode fazer perecer no inferno a alma e o corpo." Aqui Jesus distingue claramente o poder sobre o corpo (que os homens têm) do poder sobre a alma (que só Deus detém). Esse versículo é uma das afirmações mais diretas da Escritura sobre a distinção funcional entre corpo e alma — e sobre o valor supremo da alma.
+      </div>
+    </div>
+    <div class="ac-item">
+      <div class="ac-header" onclick="toggleAc(this)">
+        Mateus 22:37 — Coração, Alma e Mente no Grande Mandamento
+        <span class="ac-seta">▾</span>
+      </div>
+      <div class="ac-corpo">
+        "Amarás ao Senhor teu Deus de todo o teu coração, e de toda a tua alma, e de todo o teu entendimento." O Grande Mandamento abrange toda a pessoa — afetos (coração), identidade/vontade (alma) e razão (mente). Amar a Deus não é apenas experiência espiritual: envolve a totalidade do ser humano, incluindo o intelecto. Marcos 12:30 acrescenta ainda "de todas as tuas forças", incluindo a dimensão física.
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divisor"><span class="divisor-glifo">✦</span></div>
+
+<!-- V — SEPARAÇÃO FUNCIONAL, NÃO ESPACIAL -->
+<section class="section" id="separacao-funcional" data-nav="5">
+  <div class="badge">V — Hermenêutica</div>
+  <h2 class="section-titulo">Separação Funcional, Não Espacial</h2>
+  <div class="section-linha"></div>
+
+  <p>Uma das percepções mais importantes para interpretar a antropologia bíblica: a distinção entre corpo, alma e espírito é <em>funcional</em> — descreve o que cada dimensão faz — e não <em>espacial</em>, como se fossem compartimentos físicos localizados em regiões do corpo.</p>
+
+  <div class="destaque-biblico">
+    <p>A Bíblia usa termos diferentes para descrever funções ou dimensões distintas da mesma pessoa — sem localizar cada uma em compartimentos separados.</p>
+    <span class="ref">Princípio hermenêutico fundamental</span>
+  </div>
+
+  <div class="implicacoes">
+    <div class="impl-item">
+      <div class="impl-ponto"></div>
+      <div>
+        <div class="impl-titulo">Função, Não Localização</div>
+        <div class="impl-texto">Corpo, alma e espírito descrevem dimensões funcionais do mesmo ser: física (corpo), psicológica/afetiva/volitiva (alma) e relacional-divina (espírito). Perguntar "onde fica a alma no corpo?" é uma categoria equivocada — a alma não tem endereço físico.</div>
+      </div>
+    </div>
+    <div class="impl-item">
+      <div class="impl-ponto"></div>
+      <div>
+        <div class="impl-titulo">Linguagem Antropológica com Propósito</div>
+        <div class="impl-texto">Textos como 1 Tessalonicenses 5:23 e Hebreus 4:12 distinguem os termos para mostrar diferenças funcionais — santificação total da pessoa em 1 Ts 5:23; discernimento espiritual profundo em Hb 4:12 — não para mapear órgãos ou espaços internos.</div>
+      </div>
+    </div>
+    <div class="impl-item">
+      <div class="impl-ponto"></div>
+      <div>
+        <div class="impl-titulo">Interdependência Total</div>
+        <div class="impl-texto">Passagens sobre pecado, conversão e santificação tratam as três dimensões como profundamente inter-relacionadas: a renovação da mente (alma) influencia o comportamento do corpo; a regeneração do espírito transforma a vontade. Mudar uma dimensão afeta as outras.</div>
+      </div>
+    </div>
+    <div class="impl-item">
+      <div class="impl-ponto"></div>
+      <div>
+        <div class="impl-titulo">Resistência ao Dualismo Cartesiano</div>
+        <div class="impl-texto">A Escritura não apresenta a separação cartesiana (mente/consciência radicalmente separada do corpo), nem uma divisão espacial estanque. Ela descreve uma <em>unidade humana com aspectos funcionais diferenciados</em> — o que é muito mais sofisticado do que o dualismo popular.</div>
+      </div>
+    </div>
+    <div class="impl-item">
+      <div class="impl-ponto"></div>
+      <div>
+        <div class="impl-titulo">Implicação Pastoral Concreta</div>
+        <div class="impl-texto">Ver as distinções como funcionais favorece cuidados integrados: médicos, psicológicos e espirituais trabalhando juntos, sem reduzir a pessoa a uma "mente" separada do corpo ou a um "espírito" que desdenha da saúde física e mental.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="citacao">
+    <p>Não temais os que matam o corpo e não podem matar a alma; temei antes aquele que pode fazer perecer no inferno a alma e o corpo.</p>
+    <span class="citacao-ref">Mateus 10:28</span>
+  </div>
+</section>
+
+<div class="divisor"><span class="divisor-glifo">✦</span></div>
+
+<!-- VI — TRINDADE E A ANALOGIA DO SOMA -->
+<section class="section" id="trindade-soma" data-nav="6">
+  <div class="badge">VI — Teologia</div>
+  <h2 class="section-titulo">Trindade e a Analogia do Soma</h2>
+  <div class="section-linha"></div>
+
+  <p>É possível correlacionar a doutrina da Trindade com a ideia do <em>soma</em> como unidade composta — desde que fique claro o alcance e o limite da analogia. Analogias ajudam a pensar, mas nenhuma esgota o mistério trinitário.</p>
+
+  <div class="destaque-biblico">
+    <p>Assim como o soma significa um único ser humano com dimensões distintas que não são três pessoas, a Trindade afirma um só Deus em três Pessoas — pluralidade e unidade coexistindo.</p>
+    <span class="ref">Analogia estrutural</span>
+  </div>
+
+  <p>A analogia funciona em dois níveis complementares:</p>
+
+  <div class="cards-grid">
+    <div class="card">
+      <div class="card-icone">🔗</div>
+      <div class="card-titulo">Analogia Estrutural — Unidade Composta</div>
+      <p>O soma é um único ser com dimensões distintas (corpo, alma, espírito) sem ser três sujeitos. De modo análogo, a Trindade é um só Deus em três Pessoas, sem dividir a divindade em partes. A analogia mostra como pluralidade e unidade podem coexistir sem contradição.</p>
+    </div>
+    <div class="card">
+      <div class="card-icone">⚙️</div>
+      <div class="card-titulo">Correspondência Funcional</div>
+      <p>No humano, corpo/alma/espírito têm funções distintas mas pertencem a uma única pessoa. Na Trindade, Pai, Filho e Espírito têm personalidades e relações distintas (enviar, encarnar, santificar) sem fragmentar a essência divina. Use para explicar funções trinitárias sem implicar modalismo.</p>
+    </div>
+  </div>
+
+  <div style="margin-top:2rem;">
+    <div class="badge">Esboço Expositivo — 5 Pontos</div>
+    <div class="passos" style="margin-top:1.2rem;">
+      <div class="passo">
+        <div class="passo-num">1</div>
+        <div class="passo-conteudo">
+          <div class="passo-titulo">Tese Central — Pluralidade na Unidade</div>
+          <p>A imagem humana de unidade composta ajuda a ilustrar como pluralidade e unidade coexistem em Deus: um único Deus em três Pessoas. Textos-base: Deuteronômio 6:4 + Mateus 28:19.</p>
+        </div>
+      </div>
+      <div class="passo">
+        <div class="passo-num">2</div>
+        <div class="passo-conteudo">
+          <div class="passo-titulo">Distinção Funcional Sem Divisão</div>
+          <p>Como no humano as três dimensões têm funções distintas sem serem partes separadas, o Pai, o Filho e o Espírito têm modos-relacionais distintos sem fragmentar a divindade. Texto-base: João 14–16.</p>
+        </div>
+      </div>
+      <div class="passo">
+        <div class="passo-num">3</div>
+        <div class="passo-conteudo">
+          <div class="passo-titulo">Pessoas Reais, Não Meras Funções</div>
+          <p>A analogia é funcional, não modalista. As Pessoas trinitárias possuem relações interpessoais reais — o Filho ora ao Pai, o Espírito intercede — o que supera qualquer simples analogia de "funções". Texto-base: João 17; Filipenses 2:5–11.</p>
+        </div>
+      </div>
+      <div class="passo">
+        <div class="passo-num">4</div>
+        <div class="passo-conteudo">
+          <div class="passo-titulo">Uma Ousia, Três Hipóstases</div>
+          <p>Terminologia clássica: uma <em>ousia</em> (essência) em três <em>hypostaseis</em> (pessoas), como a unidade humana é um só sujeito com três dimensões. A co-presença nas ações redentoras ilustra isso. Texto-base: Mateus 3:16–17.</p>
+        </div>
+      </div>
+      <div class="passo">
+        <div class="passo-num">5</div>
+        <div class="passo-conteudo">
+          <div class="passo-titulo">Aplicação Pastoral e Advertências</div>
+          <p>Use a analogia com cuidado em pregação: ela facilita a compreensão da unidade-relacional de Deus, mas sempre advirta contra conclusões heréticas — triteísmo (três deuses), modalismo (apenas modos de um sujeito) e partição material da essência divina.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:2rem;">
+    <div class="badge">Limites da Analogia</div>
+    <div class="implicacoes" style="margin-top:1rem;">
+      <div class="impl-item">
+        <div class="impl-ponto"></div>
+        <div>
+          <div class="impl-titulo">Evite o Triteísmo</div>
+          <div class="impl-texto">O soma é um só sujeito — e a Trindade é um só Deus, não três. A analogia não pode gerar a impressão de três divindades independentes.</div>
+        </div>
+      </div>
+      <div class="impl-item">
+        <div class="impl-ponto"></div>
+        <div>
+          <div class="impl-titulo">Evite o Modalismo</div>
+          <div class="impl-texto">As dimensões humanas não são três "modos" do mesmo sujeito — e as Pessoas trinitárias têm relações e personalidades reais entre si, não são apenas papéis que um único Deus assume alternadamente.</div>
+        </div>
+      </div>
+      <div class="impl-item">
+        <div class="impl-ponto"></div>
+        <div>
+          <div class="impl-titulo">Evite a Partição da Essência</div>
+          <div class="impl-texto">A analogia do soma é funcional e relacional, não espacial ou divisória. Não implica que cada Pessoa divina contenha um terço da essência — a essência divina é indivisível e plena em cada Pessoa.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="citacao">
+    <p>Ide, portanto, fazei discípulos de todas as nações, batizando-os em nome do Pai, e do Filho, e do Espírito Santo.</p>
+    <span class="citacao-ref">Mateus 28:19</span>
+  </div>
+</section>
+
+<div class="divisor"><span class="divisor-glifo">✦</span></div>
+
+<!-- VII — MORTE E ESTADO INTERMEDIÁRIO -->
+<section class="section" id="morte" data-nav="7">
+  <div class="badge">VII — Escatologia</div>
+  <h2 class="section-titulo">A Morte e o Estado Intermediário</h2>
+  <div class="section-linha"></div>
+
+  <p>O que acontece no momento da morte? As Escrituras apresentam um quadro claro: o espírito retorna a Deus que o deu, enquanto a alma permanece em estado de consciência — não em sono ou extinção — aguardando a ressurreição.</p>
+
+  <div class="acordeao">
+    <div class="ac-item">
+      <div class="ac-header" onclick="toggleAc(this)">
+        O Espírito Retorna a Deus
+        <span class="ac-seta">▾</span>
+      </div>
+      <div class="ac-corpo">
+        Eclesiastes 12:7 declara que, na morte, "o pó volte à terra como antes era, e o espírito volte a Deus, que o deu." Este retorno não é extinção, mas reunião com a fonte da vida. O Salmo 31:5 — "nas tuas mãos entrego o meu espírito" — é ecoado por Jesus na cruz (Lc 23:46), confirmando a confiança pessoal na continuidade espiritual além da morte física.
+      </div>
+    </div>
+    <div class="ac-item">
+      <div class="ac-header" onclick="toggleAc(this)">
+        A Consciência da Alma no Além
+        <span class="ac-seta">▾</span>
+      </div>
+      <div class="ac-corpo">
+        Em Lucas 23:43, Jesus diz ao ladrão: "Em verdade te digo que hoje estarás comigo no paraíso." A palavra "hoje" indica transição imediata para um estado consciente de comunhão com Cristo. Filipenses 1:23 reforça isso: Paulo deseja "partir e estar com Cristo", descrevendo a morte não como sono inconsciente, mas como presença pessoal com o Senhor.
+      </div>
+    </div>
+    <div class="ac-item">
+      <div class="ac-header" onclick="toggleAc(this)">
+        A Parábola do Rico e Lázaro
+        <span class="ac-seta">▾</span>
+      </div>
+      <div class="ac-corpo">
+        Lucas 16:19-31 narra a existência consciente de duas pessoas após a morte: Lázaro no seio de Abraão e o rico no Hades. Ambos reconhecem, sentem, falam e têm memórias. A parábola ilustra que o estado intermediário é caracterizado por consciência pessoal, identidade preservada e separação baseada na relação com Deus em vida.
+      </div>
+    </div>
+  </div>
+
+  <div class="destaque-biblico">
+    <p>Porque para mim o viver é Cristo, e o morrer é lucro. Mas, se o viver na carne me dá fruto no meu trabalho, então não sei qual escolherei. De ambos os lados estou em aperto: tendo desejo de partir e de estar com Cristo, o que é muito melhor.</p>
+    <span class="ref">Filipenses 1:21–23</span>
+  </div>
+
+  <div class="implicacoes">
+    <div class="impl-item">
+      <div class="impl-ponto"></div>
+      <div>
+        <div class="impl-titulo">Consciência Imediata</div>
+        <div class="impl-texto">Não há período de sono ou inconsciência entre a morte e a presença com Cristo. A transição é imediata: "hoje estarás comigo no paraíso".</div>
+      </div>
+    </div>
+    <div class="impl-item">
+      <div class="impl-ponto"></div>
+      <div>
+        <div class="impl-titulo">Identidade Preservada</div>
+        <div class="impl-texto">A pessoa permanece reconhecível, com memória e afeto, como evidencia a parábola do rico e Lázaro.</div>
+      </div>
+    </div>
+    <div class="impl-item">
+      <div class="impl-ponto"></div>
+      <div>
+        <div class="impl-titulo">Estado Provisório</div>
+        <div class="impl-texto">O estado intermediário é incompleto — a plena restauração aguarda a ressurreição corporal na volta de Cristo.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divisor"><span class="divisor-glifo">✦</span></div>
+
+<!-- IV — RESSURREIÇÃO -->
+<section class="section" id="ressurreicao" data-nav="8">
+  <div class="badge">VIII — Esperança</div>
+  <h2 class="section-titulo">A Ressurreição e o Soma Glorificado</h2>
+  <div class="section-linha"></div>
+
+  <p>A grande esperança cristã não é a fuga do corpo para uma existência puramente espiritual. É exatamente o oposto: a reunificação gloriosa de corpo, alma e espírito na ressurreição — o <em>soma</em> restaurado e transformado.</p>
+
+  <div class="passos">
+    <div class="passo">
+      <div class="passo-num">1</div>
+      <div class="passo-conteudo">
+        <div class="passo-titulo">Os Mortos em Cristo Ressuscitarão</div>
+        <p>1 Tessalonicenses 4:14-17 afirma que "os mortos em Cristo ressuscitarão primeiro". Aqueles no estado intermediário serão reunidos aos seus corpos ressuscitados. É uma reunificação, não uma criação do zero.</p>
+      </div>
+    </div>
+    <div class="passo">
+      <div class="passo-num">2</div>
+      <div class="passo-conteudo">
+        <div class="passo-titulo">Transformação do Corpo Natural em Espiritual</div>
+        <p>1 Coríntios 15:42-44 descreve a transformação: "semeia-se em corrupção, ressuscita em incorrupção; semeia-se em desonra, ressuscita em glória; semeia-se em fraqueza, ressuscita em poder; semeia-se corpo natural, ressuscita corpo espiritual."</p>
+      </div>
+    </div>
+    <div class="passo">
+      <div class="passo-num">3</div>
+      <div class="passo-conteudo">
+        <div class="passo-titulo">Conformidade ao Corpo de Cristo</div>
+        <p>Filipenses 3:20-21 revela que Cristo "transformará o nosso corpo de humilhação, para ser conforme ao seu corpo de glória". O modelo da ressurreição é o próprio ressuscitado — Jesus em sua glória pós-ressurreição.</p>
+      </div>
+    </div>
+    <div class="passo">
+      <div class="passo-num">4</div>
+      <div class="passo-conteudo">
+        <div class="passo-titulo">Reunificação Plena do Soma</div>
+        <p>Corpo, alma e espírito — separados temporariamente na morte — serão reunidos em um soma glorificado, incorruptível e eterno. Esta é a conclusão da esperança bíblica: não o escapismo do corpo, mas sua redenção.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="citacao">
+    <p>Semeia-se corpo natural, ressuscita corpo espiritual. Se há corpo natural, há também corpo espiritual. Assim também está escrito: o primeiro homem, Adão, foi feito alma vivente; o último Adão, espírito vivificante.</p>
+    <span class="citacao-ref">1 Coríntios 15:44–45</span>
+  </div>
+</section>
+
+<div class="divisor"><span class="divisor-glifo">✦</span></div>
+
+<!-- V — PASSAGENS-CHAVE -->
+<section class="section" id="passagens" data-nav="9">
+  <div class="badge">IX — Referências</div>
+  <h2 class="section-titulo">Passagens-Chave por Tema</h2>
+  <div class="section-linha"></div>
+  <p>As passagens a seguir formam o núcleo textual do estudo. Estão organizadas por tema — da natureza da alma à ressurreição do corpo. Clique em qualquer referência para ver um resumo.</p>
+
+  <div class="tabela-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Passagem</th>
+          <th>Tema Central</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Mateus 10:28</td><td>Corpo e alma — poderes distintos; valor supremo da alma</td></tr>
+        <tr><td>Mateus 22:37 / Marcos 12:30</td><td>Grande Mandamento — coração, alma, mente e forças</td></tr>
+        <tr><td>Romanos 12:4–5</td><td>Igreja como corpo de Cristo — diversidade na unidade</td></tr>
+        <tr><td>1 Coríntios 12:12–27</td><td>Membros do corpo com funções distintas e complementares</td></tr>
+        <tr><td>Efésios 4:4–16</td><td>Um só corpo, com Cristo como cabeça, crescendo em amor</td></tr>
+        <tr><td>Deuteronômio 6:4</td><td>Shemá — "O Senhor é um" (base para a unidade trinitária)</td></tr>
+        <tr><td>João 17:11, 21</td><td>Oração sacerdotal — unidade das Pessoas trinitárias</td></tr>
+        <tr><td>Mateus 28:19</td><td>Batismo em nome do Pai, do Filho e do Espírito Santo</td></tr>
+        <tr><td>Mateus 3:16–17</td><td>Co-presença das três Pessoas nas ações redentoras</td></tr>
+        <tr><td>Ezequiel 18:4</td><td>Alma como sinônimo da pessoa inteira — responsabilidade moral</td></tr>
+        <tr><td>Levítico 17:14</td><td>Alma associada ao sangue como princípio vital (uso metonímico)</td></tr>
+        <tr><td>Mateus 26:38</td><td>Alma ≠ sangue — o teste do absurdo confirma a distinção</td></tr>
+        <tr><td>Gênesis 35:18</td><td>A alma de Raquel saiu na morte — a alma parte do corpo</td></tr>
+        <tr><td>1 Reis 17:21</td><td>Elias pede o retorno da alma do menino morto</td></tr>
+        <tr><td>Filipenses 1:23-24</td><td>A alma consciente no além — partir e estar com Cristo</td></tr>
+        <tr><td>Apocalipse 6:9-10</td><td>Almas conscientes clamando a Deus no estado intermediário</td></tr>
+        <tr><td>1 Tessalonicenses 5:23</td><td>Espírito, alma e corpo — distinção e santificação</td></tr>
+        <tr><td>Hebreus 4:12</td><td>A Palavra divide alma e espírito</td></tr>
+        <tr><td>Lucas 1:46–47</td><td>Maria — alma e espírito na adoração</td></tr>
+        <tr><td>Eclesiastes 12:7</td><td>O espírito retorna a Deus na morte</td></tr>
+        <tr><td>Salmo 31:5 / Lucas 23:46</td><td>Entrega do espírito nas mãos de Deus</td></tr>
+        <tr><td>Lucas 23:43</td><td>Consciência imediata após a morte — o paraíso</td></tr>
+        <tr><td>Lucas 16:19–31</td><td>Rico e Lázaro — consciência no estado intermediário</td></tr>
+        <tr><td>1 Coríntios 15:42–44</td><td>Corpo natural vs. corpo espiritual na ressurreição</td></tr>
+        <tr><td>1 Tessalonicenses 4:14–17</td><td>Os mortos em Cristo ressuscitarão</td></tr>
+        <tr><td>Filipenses 3:20–21</td><td>Transformação do corpo à semelhança de Cristo glorioso</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="margin-top: 2rem;">
+    <p>Referências rápidas — clique para ver o resumo:</p>
+    <div class="tags-ref">
+      <span class="tag-ref" data-tip="Corpo e alma — poderes distintos. Os homens matam o corpo; só Deus pode destruir a alma." onclick="flashTag(this)">Mt 10:28</span>
+      <span class="tag-ref" data-tip="Grande Mandamento: amar a Deus de todo coração, alma, mente e forças — toda a pessoa." onclick="flashTag(this)">Mt 22:37</span>
+      <span class="tag-ref" data-tip="'Batizando-os em nome do Pai, do Filho e do Espírito Santo' — Trindade na missão." onclick="flashTag(this)">Mt 28:19</span>
+      <span class="tag-ref" data-tip="Co-presença das três Pessoas: o Filho batizado, o Espírito descendo, o Pai falando." onclick="flashTag(this)">Mt 3:16–17</span>
+      <span class="tag-ref" data-tip="Assim como o corpo é um com muitos membros — a Igreja é o corpo de Cristo." onclick="flashTag(this)">1 Co 12:12</span>
+      <span class="tag-ref" data-tip="'O Senhor nosso Deus é o único Senhor' — fundamento da unidade divina." onclick="flashTag(this)">Dt 6:4</span>
+      <span class="tag-ref" data-tip="Oração sacerdotal: 'que sejam um, assim como nós somos um' — unidade trinitária como modelo." onclick="flashTag(this)">Jo 17:21</span>
+      <span class="tag-ref" data-tip="'Ez 18:4 — 'todas as almas são minhas' — nephesh designa a pessoa inteira, com responsabilidade moral diante de Deus." onclick="flashTag(this)">Ez 18:4</span>
+      <span class="tag-ref" data-tip="A vida de toda a carne é o sangue — uso metonímico de nephesh. Compare com Mt 26:38 para ver o limite desse uso." onclick="flashTag(this)">Lv 17:14</span>
+      <span class="tag-ref" data-tip="'Minha alma está profundamente triste' — substituir alma por sangue torna o versículo absurdo, provando a distinção." onclick="flashTag(this)">Mt 26:38</span>
+      <span class="tag-ref" data-tip="A alma de Raquel saiu quando ela morreu — a alma parte do corpo na morte, mas não deixa de existir." onclick="flashTag(this)">Gn 35:18</span>
+      <span class="tag-ref" data-tip="Elias pede que a alma do menino morto retorne — a alma pode partir e voltar ao corpo." onclick="flashTag(this)">1 Rs 17:21</span>
+      <span class="tag-ref" data-tip="Paulo deseja partir e estar com Cristo — consciência plena e comunhão com Cristo após a morte." onclick="flashTag(this)">Fp 1:23</span>
+      <span class="tag-ref" data-tip="Almas dos mártires clamam debaixo do altar — consciência ativa, memória e identidade preservadas no estado intermediário." onclick="flashTag(this)">Ap 6:9-10</span>
+      <span class="tag-ref" data-tip="Distinção tripartite: espírito, alma e corpo preservados íntegros até a vinda de Cristo." onclick="flashTag(this)">1 Ts 5:23</span>
+      <span class="tag-ref" data-tip="A Palavra divide alma e espírito, revelando os pensamentos mais profundos." onclick="flashTag(this)">Hb 4:12</span>
+      <span class="tag-ref" data-tip="O pó volta à terra; o espírito (ruach) volta a Deus que o deu." onclick="flashTag(this)">Ec 12:7</span>
+      <span class="tag-ref" data-tip=""Em verdade te digo que HOJE estarás comigo no paraíso" — consciência imediata após a morte." onclick="flashTag(this)">Lc 23:43</span>
+      <span class="tag-ref" data-tip="A parábola revela consciência, identidade e separação no estado além-morte." onclick="flashTag(this)">Lc 16:19–31</span>
+      <span class="tag-ref" data-tip="Semeia-se corpo natural, ressuscita corpo espiritual — transformação na ressurreição." onclick="flashTag(this)">1 Co 15:42–44</span>
+      <span class="tag-ref" data-tip="Os mortos em Cristo ressuscitarão; seremos arrebatados para encontrar o Senhor." onclick="flashTag(this)">1 Ts 4:14–17</span>
+      <span class="tag-ref" data-tip="Cristo transformará nosso corpo de humilhação ao seu corpo de glória." onclick="flashTag(this)">Fp 3:20–21</span>
+    </div>
+  </div>
+</section>
+
+<div class="divisor"><span class="divisor-glifo">✦</span></div>
+
+<!-- VI — GUIA DE ESTUDO -->
+<section class="section" id="estudo" data-nav="10">
+  <div class="badge">X — Estudo</div>
+  <h2 class="section-titulo">Guia de Estudo em Sessões</h2>
+  <div class="section-linha"></div>
+  <p>Este guia propõe três encontros progressivos, cada um com textos-base, perguntas para reflexão e notas interpretativas. Ideal para grupos pequenos, famílias ou estudo individual.</p>
+
+  <div class="acordeao">
+    <div class="ac-item">
+      <div class="ac-header" onclick="toggleAc(this)">
+        Sessão 1 — A Natureza e os Usos da Alma
+        <span class="ac-seta">▾</span>
+      </div>
+      <div class="ac-corpo">
+        <strong style="font-family:'Cinzel',serif; font-size:0.88rem; color:var(--dourado);">Textos:</strong> Ezequiel 18:4 · Levítico 17:14 · Mateus 26:38 · Gênesis 35:18 · 1 Reis 17:21 · Apocalipse 6:9-10
+        <br><br>
+        <strong style="font-family:'Cinzel',serif; font-size:0.88rem; color:var(--dourado);">Perguntas para reflexão:</strong>
+        <ul style="margin-top:0.5rem; padding-left:1.5rem; color:#1a0e00; font-weight:500;">
+          <li>Em Ezequiel 18:4 e Levítico 17:14, a palavra "alma" tem o mesmo sentido? O que delimita cada uso?</li>
+          <li>O "teste do absurdo" em Mateus 26:38 é um método válido de interpretação bíblica? Por quê?</li>
+          <li>Gênesis 35:18 e 1 Reis 17:21 mostram a alma partindo e retornando. O que isso revela sobre a natureza da alma?</li>
+          <li>Em Apocalipse 6:9-10, as almas têm memória, voz e identidade. O que isso implica sobre o estado intermediário?</li>
+          <li>Em que sentido você é uma alma que tem um corpo — e não um corpo que tem uma alma?</li>
+        </ul>
+        <br>
+        <strong style="font-family:'Cinzel',serif; font-size:0.88rem; color:var(--dourado);">Nota:</strong> A palavra nephesh tem múltiplos usos nas Escrituras. Essa pluralidade não é contradição — é riqueza. O contexto sempre determina o sentido preciso: ora designa a pessoa inteira, ora o princípio vital, ora a dimensão imaterial que sobrevive à morte.
+      </div>
+    </div>
+    <div class="ac-item">
+      <div class="ac-header" onclick="toggleAc(this)">
+        Sessão 2 — A Morte e o Estado Intermediário
+        <span class="ac-seta">▾</span>
+      </div>
+      <div class="ac-corpo">
+        <strong style="font-family:'Cinzel',serif; font-size:0.88rem; color:var(--dourado);">Textos:</strong> Eclesiastes 12:7 · Lucas 23:43 · Filipenses 1:21–24 · Lucas 16:19–31
+        <br><br>
+        <strong style="font-family:'Cinzel',serif; font-size:0.88rem; color:var(--dourado);">Perguntas para reflexão:</strong>
+        <ul style="margin-top:0.5rem; padding-left:1.5rem; color:#1a0e00; font-weight:500;">
+          <li>O que o "hoje" em Lucas 23:43 implica sobre a consciência pós-morte?</li>
+          <li>Por que Paulo descreve a morte como "lucro" e "muito melhor"?</li>
+          <li>A parábola do rico e Lázaro apresenta consciência, memória e emoção. O que isso revela sobre a alma no além?</li>
+          <li>Como esses textos consolam diante da perda de pessoas queridas?</li>
+        </ul>
+        <br>
+        <strong style="font-family:'Cinzel',serif; font-size:0.88rem; color:var(--dourado);">Nota:</strong> O "sono da alma" (soul sleep) é uma posição minoritária na tradição cristã. A maioria das confissões históricas afirma consciência no estado intermediário com base nestas passagens.
+      </div>
+    </div>
+    <div class="ac-item">
+      <div class="ac-header" onclick="toggleAc(this)">
+        Sessão 3 — Ressurreição e Reunificação do Soma
+        <span class="ac-seta">▾</span>
+      </div>
+      <div class="ac-corpo">
+        <strong style="font-family:'Cinzel',serif; font-size:0.88rem; color:var(--dourado);">Textos:</strong> 1 Coríntios 15:42–44 · 1 Tessalonicenses 4:14–17 · Filipenses 3:20–21
+        <br><br>
+        <strong style="font-family:'Cinzel',serif; font-size:0.88rem; color:var(--dourado);">Perguntas para reflexão:</strong>
+        <ul style="margin-top:0.5rem; padding-left:1.5rem; color:#1a0e00; font-weight:500;">
+          <li>Qual a diferença entre corpo natural e corpo espiritual em 1 Coríntios 15? É o mesmo corpo ou um totalmente diferente?</li>
+          <li>Em que ordem ocorrem os eventos descritos em 1 Tessalonicenses 4:14–17?</li>
+          <li>O que significa ter um corpo "conforme ao corpo de glória" de Cristo?</li>
+          <li>Como a esperança da ressurreição corporal muda sua visão sobre seu corpo hoje?</li>
+        </ul>
+        <br>
+        <strong style="font-family:'Cinzel',serif; font-size:0.88rem; color:var(--dourado);">Nota:</strong> Continuidade e transformação — o corpo ressurreto é o mesmo em identidade, mas totalmente renovado em natureza. Paulo usa a analogia da semente e da planta para ilustrar esta paradoxal continuidade transformada.
+      </div>
+    </div>
+    <div class="ac-item">
+      <div class="ac-header" onclick="toggleAc(this)">
+        Sessão 4 — O Soma, Separação Funcional e a Trindade
+        <span class="ac-seta">▾</span>
+      </div>
+      <div class="ac-corpo">
+        <strong style="font-family:'Cinzel',serif; font-size:0.88rem; color:var(--dourado);">Textos:</strong> Mateus 10:28 · 1 Coríntios 12:12–27 · Romanos 12:4–5 · Deuteronômio 6:4 · Mateus 28:19 · João 17:11, 21
+        <br><br>
+        <strong style="font-family:'Cinzel',serif; font-size:0.88rem; color:var(--dourado);">Perguntas para reflexão:</strong>
+        <ul style="margin-top:0.5rem; padding-left:1.5rem; color:#1a0e00; font-weight:500;">
+          <li>Em Mateus 10:28, Jesus distingue quem pode matar o corpo de quem pode destruir a alma. O que isso revela sobre o valor eterno da alma?</li>
+          <li>A distinção entre corpo, alma e espírito é espacial (localização) ou funcional (o que cada um faz)? Como isso muda sua maneira de pensar sobre si mesmo?</li>
+          <li>A metáfora do soma como corpo de Cristo (1 Co 12) ilumina a vida da Igreja. Qual é sua função específica no corpo?</li>
+          <li>A analogia do soma com a Trindade é útil para o ensino? Quais são seus limites? Como evitar triteísmo e modalismo ao usá-la?</li>
+          <li>Se as distinções são funcionais e a pessoa é uma unidade, como isso impacta o cuidado pastoral de alguém com depressão ou doença física?</li>
+        </ul>
+        <br>
+        <strong style="font-family:'Cinzel',serif; font-size:0.88rem; color:var(--dourado);">Nota:</strong> A visão holística-funcional da Escritura sustenta um cuidado pastoral integral — médico, psicológico e espiritual trabalhando juntos, sem compartimentos separados. A unidade do soma é fundamento da missão integrada da Igreja.
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 2.5rem;">
+    <div class="badge">Notas Interpretativas</div>
+    <div style="margin-top: 1rem;" class="implicacoes">
+      <div class="impl-item">
+        <div class="impl-ponto"></div>
+        <div>
+          <div class="impl-titulo">Nephesh não é simplesmente "alma imaterial"</div>
+          <div class="impl-texto">No hebraico, nephesh refere-se frequentemente à pessoa vivente inteira — não apenas a um componente imaterial separado. O contexto sempre determina o sentido preciso.</div>
+        </div>
+      </div>
+      <div class="impl-item">
+        <div class="impl-ponto"></div>
+        <div>
+          <div class="impl-titulo">Ruach associado ao retorno a Deus</div>
+          <div class="impl-texto">Em Eclesiastes 12:7, o ruach é associado especificamente ao retorno a Deus — o princípio vital divino que Deus retoma ao seu criador na morte.</div>
+        </div>
+      </div>
+      <div class="impl-item">
+        <div class="impl-ponto"></div>
+        <div>
+          <div class="impl-titulo">Psyché e Pneuma: distinção funcional</div>
+          <div class="impl-texto">No NT, psyché e pneuma às vezes são distinguidos funcionalmente; os contextos determinam se são apresentados como aspectos distintos ou como dimensões de uma só pessoa.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divisor"><span class="divisor-glifo">✦</span></div>
+
+<!-- RODAPÉ -->
+<footer>
+  <div class="footer-simbolo">✦</div>
+  <div class="footer-nome">Pr. João Alves</div>
+  <div class="footer-local">Vila Velha · Espírito Santo</div>
+  <a class="footer-site" href="https://www.radiomateus633.com" target="_blank">www.radiomateus633.com</a>
+  <div class="footer-nota">Porque para mim o viver é Cristo, e o morrer é lucro. — Filipenses 1:21</div>
+</footer>
+
+<button id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Voltar ao topo">↑</button>
+
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+// Navegação
+function irPara(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const navH = document.getElementById('mainNav').offsetHeight;
+  const top = el.getBoundingClientRect().top + window.scrollY - navH - 16;
+  window.scrollTo({ top, behavior: 'smooth' });
+}
+
+// Progresso e backTop
+window.addEventListener('scroll', () => {
+  const pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('backTop').classList.toggle('visivel', window.scrollY > 400);
+});
+
+// IntersectionObserver para seções
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visivel');
+      // Anima passos
+      const passos = entry.target.querySelectorAll('.passo');
+      passos.forEach((p, i) => {
+        setTimeout(() => p.classList.add('visivel'), i * 140);
+      });
+      // Nav ativo
+      const nav = entry.target.dataset.nav;
+      if (nav) {
+        document.querySelectorAll('.nav-btn[data-nav]').forEach(b => b.classList.remove('ativo'));
+        const ativo = document.querySelector(`.nav-btn[data-nav="${nav}"]`);
+        if (ativo) ativo.classList.add('ativo');
+      }
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.section').forEach(s => observer.observe(s));
+
+// Acordeão
+function toggleAc(header) {
+  const item = header.closest('.ac-item');
+  const aberto = item.classList.contains('aberto');
+  // fecha todos
+  document.querySelectorAll('.ac-item.aberto').forEach(i => i.classList.remove('aberto'));
+  if (!aberto) item.classList.add('aberto');
+}
+
+// Tooltip das tags
+const tooltip = document.getElementById('tooltip');
+document.querySelectorAll('.tag-ref').forEach(tag => {
+  tag.addEventListener('mouseenter', (e) => {
+    tooltip.textContent = tag.dataset.tip;
+    tooltip.style.display = 'block';
+    posicionarTooltip(e);
+  });
+  tag.addEventListener('mousemove', posicionarTooltip);
+  tag.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
+});
+
+function posicionarTooltip(e) {
+  let x = e.clientX + 12;
+  let y = e.clientY - 8;
+  const w = tooltip.offsetWidth || 240;
+  const h = tooltip.offsetHeight || 60;
+  if (x + w > window.innerWidth - 10) x = e.clientX - w - 12;
+  if (y + h > window.innerHeight - 10) y = e.clientY - h - 8;
+  tooltip.style.left = x + 'px';
+  tooltip.style.top = y + 'px';
+}
+
+// Flash de tag
+function flashTag(el) {
+  el.classList.add('flash');
+  setTimeout(() => el.classList.remove('flash'), 600);
+}
+</script>
+</body>
+</html>
